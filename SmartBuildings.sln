@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestActionsProcessor", "Gu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestActionsProcessor.Test", "GuestActionsProcessor.Test\GuestActionsProcessor.Test.csproj", "{B8171EB7-EC1B-465A-A2C6-DEA3309F36F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestActionsProcessor.Models", "GuestActionsProcessor.Models\GuestActionsProcessor.Models.csproj", "{251E0164-9676-4710-8F23-52CA4C022D18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B8171EB7-EC1B-465A-A2C6-DEA3309F36F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8171EB7-EC1B-465A-A2C6-DEA3309F36F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8171EB7-EC1B-465A-A2C6-DEA3309F36F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{251E0164-9676-4710-8F23-52CA4C022D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{251E0164-9676-4710-8F23-52CA4C022D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{251E0164-9676-4710-8F23-52CA4C022D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{251E0164-9676-4710-8F23-52CA4C022D18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
