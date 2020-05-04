@@ -3,7 +3,7 @@ using GuestActionsProcessor.Models.Models;
 using System;
 using System.Linq;
 
-namespace GuestActionsProcessor.Test.Functions
+namespace GuestActionsProcessor.Test.Helpers
 {
     public static class GuestModelsGenerator
     {
