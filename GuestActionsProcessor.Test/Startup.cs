@@ -1,4 +1,4 @@
-﻿using GuestActionsProcessor.Models.Models;
+﻿using GuestActionsProcessor.Models.SettingsModels;
 using GuestActionsProcessor.Test;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Azure.WebJobs;
@@ -18,7 +18,7 @@ namespace GuestActionsProcessor.Test
                 loggingBuilder.AddFilter(level => true);
             });
 
-            var eventHubConfig = builder.Services.AddOptions<EventHubSettings>()
+            builder.Services.AddOptions<EventHubSettings>()
                 .Configure<IConfiguration>((settings, configuration) =>
                 {
                     configuration.GetSection("EventHubSettings").Bind(settings);
