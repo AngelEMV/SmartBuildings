@@ -42,14 +42,14 @@ namespace GuestActionsProcessor.Test.Functions
                 await SendToEventHubAsync(checkinInfo);
                 _logger.LogInformation($"- User {checkinInfo.FirstName} {checkinInfo.LastName} performed Checkin. Sending CheckInInfo to Event Hub");
 
-                var actionsInfo = GuestModelsGenerator.GenerateActionInfo(10);
+                var actionsInfo = GuestModelsGenerator.GenerateActionInfo(10, checkinInfo);
                 foreach (var action in actionsInfo)
                 {
                     await SendToEventHubAsync(action);
                     _logger.LogInformation($"- User {action.FirstName} {action.LastName} has accesed to {action.AreaName}. Sending ActionInfo to Event Hub");
                 }
 
-                var checkoutInfo = GuestModelsGenerator.GenerateCheckoutInfo(1);
+                var checkoutInfo = GuestModelsGenerator.GenerateCheckoutInfo(1, checkinInfo);
                 await SendToEventHubAsync(checkoutInfo);
                 _logger.LogInformation($"- User {checkoutInfo.FirstName} {checkoutInfo.LastName} performed Checkout. Sending CheckoutInfo to Event Hub");
 

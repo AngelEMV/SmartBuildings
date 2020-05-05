@@ -20,27 +20,27 @@ namespace GuestActionsProcessor.Test.Helpers
                 .GenerateLazy(amount).FirstOrDefault();
         }
 
-        public static IEnumerable<GuestActionInfo> GenerateActionInfo(int amount)
+        public static IEnumerable<GuestActionInfo> GenerateActionInfo(int amount, CheckinInfo seed)
         {
             var areas = new[] { "Room 210", "Room 211", "Room 212", "Gym", "Swimming Pool", "Restaurant", "Parking Lot" };
 
             return new Faker<GuestActionInfo>()
-                .RuleFor(i => i.BuildingId, (fake) => Guid.NewGuid().ToString())
-                .RuleFor(i => i.UserId, (fake) => Guid.NewGuid().ToString())
-                .RuleFor(u => u.FirstName, (f, u) => f.Name.FirstName())
-                .RuleFor(u => u.LastName, (f, u) => f.Name.LastName())
+                .RuleFor(i => i.BuildingId, seed.BuildingId)
+                .RuleFor(i => i.UserId, seed.UserId)
+                .RuleFor(u => u.FirstName, seed.FirstName)
+                .RuleFor(u => u.LastName, seed.LastName)
                 .RuleFor(i => i.AreaName, (fake) => fake.PickRandom(areas))
                 .RuleFor(i => i.ActionDateTime, DateTime.UtcNow)
                 .GenerateLazy(amount);
         }
 
-        public static CheckoutInfo GenerateCheckoutInfo(int amount)
+        public static CheckoutInfo GenerateCheckoutInfo(int amount, CheckinInfo seed)
         {
             return new Faker<CheckoutInfo>()
-                .RuleFor(i => i.BuildingId, (fake) => Guid.NewGuid().ToString())
-                .RuleFor(i => i.UserId, (fake) => Guid.NewGuid().ToString())
-                .RuleFor(u => u.FirstName, (f, u) => f.Name.FirstName())
-                .RuleFor(u => u.LastName, (f, u) => f.Name.LastName())
+                .RuleFor(i => i.BuildingId, seed.BuildingId)
+                .RuleFor(i => i.UserId, seed.UserId)
+                .RuleFor(u => u.FirstName, seed.FirstName)
+                .RuleFor(u => u.LastName, seed.LastName)
                 .RuleFor(i => i.CheckoutDateTime, DateTime.UtcNow)
                 .GenerateLazy(amount).FirstOrDefault();
         }
