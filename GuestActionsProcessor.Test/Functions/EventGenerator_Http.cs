@@ -42,9 +42,9 @@ namespace GuestActionsProcessor.Test.Functions
                 await SendToEventHubAsync(checkinInfo);
                 _logger.LogInformation($"Sending {checkinInfo.FirstName} {checkinInfo.LastName} CheckInInfo to Event Hub");
 
-                var checkoutInfo = GuestModelsGenerator.GenerateCheckinInfo(1);
-                await SendToEventHubAsync(checkinInfo);
-                _logger.LogInformation($"Sending {checkinInfo.FirstName} {checkinInfo.LastName} CheckoutInfo to Event Hub");
+                var checkoutInfo = GuestModelsGenerator.GenerateCheckoutInfo(1);
+                await SendToEventHubAsync(checkoutInfo);
+                _logger.LogInformation($"Sending {checkoutInfo.UserId} CheckoutInfo to Event Hub");
 
                 result = new OkResult();
             }
