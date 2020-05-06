@@ -1,6 +1,6 @@
 variable "resourceGroupName" {
   type = string
-  default = "SmartBuildings"
+  default = "Smart-Buildings"
 }
 
 variable "location" {
