@@ -1,5 +1,6 @@
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Producer;
+using GuestActionsProcessor.Models.Models;
 using GuestActionsProcessor.Models.SettingsModels;
 using GuestActionsProcessor.Test.Helpers;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +20,7 @@ namespace GuestActionsProcessor.Test.Functions
     public class EventGenerator
     {
         private readonly ILogger<EventGenerator> _logger;
-        private readonly EventHubSettings _eventHubOptions;
+        private readonly EventHubSettings _eventHubSettings;
         private readonly EventHubProducerClient _eventHubProducerClient;
 
         public EventGenerator(
@@ -26,8 +28,8 @@ namespace GuestActionsProcessor.Test.Functions
             IOptions<EventHubSettings> eventHubSettings)
         {
             _logger = logger;
-            _eventHubOptions = eventHubSettings.Value;
-            _eventHubProducerClient = new EventHubProducerClient(_eventHubOptions.ConnectionString, _eventHubOptions.HubName);
+            _eventHubSettings = eventHubSettings.Value;
+            _eventHubProducerClient = new EventHubProducerClient(_eventHubSettings.ConnectionString, _eventHubSettings.HubName);
         }
 
         [FunctionName(nameof(EventGenerator))]
@@ -38,20 +40,14 @@ namespace GuestActionsProcessor.Test.Functions
 
             try
             {
-                var checkinInfo = GuestModelsGenerator.GenerateCheckinInfo(1);
-                await SendToEventHubAsync(checkinInfo);
-                _logger.LogInformation($"- User {checkinInfo.FirstName} {checkinInfo.LastName} performed Checkin. Sending CheckInInfo to Event Hub");
+                var buildingInfo = GuestModelsGenerator.GenerateBuildingInfo();
+                var userInfo = GuestModelsGenerator.GenerateUserInfo();
 
-                var actionsInfo = GuestModelsGenerator.GenerateActionInfo(10, checkinInfo);
-                foreach (var action in actionsInfo)
-                {
-                    await SendToEventHubAsync(action);
-                    _logger.LogInformation($"- User {action.FirstName} {action.LastName} has accesed to {action.AreaName}. Sending ActionInfo to Event Hub");
-                }
+                await SendCheckinInfo(buildingInfo, userInfo);
 
-                var checkoutInfo = GuestModelsGenerator.GenerateCheckoutInfo(1, checkinInfo);
-                await SendToEventHubAsync(checkoutInfo);
-                _logger.LogInformation($"- User {checkoutInfo.FirstName} {checkoutInfo.LastName} performed Checkout. Sending CheckoutInfo to Event Hub");
+                await SendRandomActions(buildingInfo, userInfo, 10);
+
+                await SendCheckoutInfo(buildingInfo, userInfo);
 
                 result = new OkResult();
             }
@@ -64,7 +60,38 @@ namespace GuestActionsProcessor.Test.Functions
             return result;
         }
 
-        private async Task SendToEventHubAsync(object payload)
+        private async Task SendCheckinInfo(BuildingInfo buildingInfo, UserInfo userInfo)
+        {
+            var checkinInfo = GuestModelsGenerator.GenerateCheckinInfo();
+            var checkinActionInfo = GuestModelsGenerator.GenerateActionInfo(1, buildingInfo, userInfo)?.FirstOrDefault();
+            checkinActionInfo.CheckinInfo = checkinInfo;
+            checkinActionInfo.AreaName = null;
+            await SendToEventHubAsync(checkinActionInfo);
+            _logger.LogInformation($"---- User {userInfo?.FirstName} {userInfo?.LastName} performed Checkin. Sending CheckInInfo to Event Hub");
+        }
+
+        private async Task SendRandomActions(BuildingInfo buildingInfo, UserInfo userInfo, int amount)
+        {
+            var actionsInfo = GuestModelsGenerator.GenerateActionInfo(amount, buildingInfo, userInfo);
+            foreach (var action in actionsInfo)
+            {
+                await SendToEventHubAsync(action);
+                _logger.LogInformation($"---- User {action?.UserInfo?.FirstName} {action?.UserInfo?.LastName} has accesed to {action.AreaName}. Sending ActionInfo to Event Hub");
+            }
+        }
+
+        private async Task SendCheckoutInfo(BuildingInfo buildingInfo, UserInfo userInfo)
+        {
+            var checkoutInfo = GuestModelsGenerator.GenerateCheckoutInfo();
+            var checkoutActionInfo = GuestModelsGenerator.GenerateActionInfo(1, buildingInfo, userInfo)?.FirstOrDefault();
+            checkoutActionInfo.CheckinInfo = null;
+            checkoutActionInfo.AreaName = null;
+            checkoutActionInfo.CheckoutInfo = checkoutInfo;
+            await SendToEventHubAsync(checkoutActionInfo);
+            _logger.LogInformation($"---- User {userInfo?.FirstName} {userInfo?.LastName} performed Checkout. Sending CheckoutInfo to Event Hub");
+        }
+
+        private async Task SendToEventHubAsync(GuestActionInfo payload)
         {
             EventDataBatch eventDataBatch = await _eventHubProducerClient.CreateBatchAsync();
             var eventReading = JsonConvert.SerializeObject(payload);

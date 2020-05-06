@@ -8,41 +8,53 @@ namespace GuestActionsProcessor.Test.Helpers
 {
     public static class GuestModelsGenerator
     {
-        public static CheckinInfo GenerateCheckinInfo(int amount)
+        public static BuildingInfo GenerateBuildingInfo()
         {
-            return new Faker<CheckinInfo>()
-                .RuleFor(i => i.BuildingId, (fake) => Guid.NewGuid().ToString())
-                .RuleFor(i => i.UserId, (fake) => Guid.NewGuid().ToString())
-                .RuleFor(i => i.CheckinDateTime, DateTime.UtcNow)
+            return new Faker<BuildingInfo>()
+                .RuleFor(i => i.BuildingId, (fake) => Guid.NewGuid())
+                .RuleFor(i => i.City, (f, u) => f.Address.City())
+                .RuleFor(i => i.Address, (f, u) => f.Address.StreetAddress())
+                .GenerateLazy(1).FirstOrDefault();
+        }
+
+        public static UserInfo GenerateUserInfo()
+        {
+            return new Faker<UserInfo>()
+                .RuleFor(i => i.UserId, (fake) => Guid.NewGuid())
                 .RuleFor(u => u.FirstName, (f, u) => f.Name.FirstName())
                 .RuleFor(u => u.LastName, (f, u) => f.Name.LastName())
                 .RuleFor(u => u.Email, (f, u) => f.Internet.Email(u.FirstName, u.LastName))
-                .GenerateLazy(amount).FirstOrDefault();
+                .GenerateLazy(1).FirstOrDefault();
         }
 
-        public static IEnumerable<GuestActionInfo> GenerateActionInfo(int amount, CheckinInfo seed)
+        public static CheckinInfo GenerateCheckinInfo()
+        {
+            return new Faker<CheckinInfo>()
+                .RuleFor(i => i.CheckinDateTime, DateTime.UtcNow)
+                .GenerateLazy(1).FirstOrDefault();
+        }
+
+        public static IEnumerable<GuestActionInfo> GenerateActionInfo(
+            int amount, 
+            BuildingInfo buildingSeed,
+            UserInfo userSeed)
         {
             var areas = new[] { "Room 210", "Room 211", "Room 212", "Gym", "Swimming Pool", "Restaurant", "Parking Lot" };
 
             return new Faker<GuestActionInfo>()
-                .RuleFor(i => i.BuildingId, seed.BuildingId)
-                .RuleFor(i => i.UserId, seed.UserId)
-                .RuleFor(u => u.FirstName, seed.FirstName)
-                .RuleFor(u => u.LastName, seed.LastName)
+                .RuleFor(i => i.BuildingInfo, buildingSeed)
+                .RuleFor(i => i.UserInfo, userSeed)
+                .RuleFor(i => i.id, (fake) => Guid.NewGuid())
                 .RuleFor(i => i.AreaName, (fake) => fake.PickRandom(areas))
                 .RuleFor(i => i.ActionDateTime, DateTime.UtcNow)
                 .GenerateLazy(amount);
         }
 
-        public static CheckoutInfo GenerateCheckoutInfo(int amount, CheckinInfo seed)
+        public static CheckoutInfo GenerateCheckoutInfo()
         {
             return new Faker<CheckoutInfo>()
-                .RuleFor(i => i.BuildingId, seed.BuildingId)
-                .RuleFor(i => i.UserId, seed.UserId)
-                .RuleFor(u => u.FirstName, seed.FirstName)
-                .RuleFor(u => u.LastName, seed.LastName)
                 .RuleFor(i => i.CheckoutDateTime, DateTime.UtcNow)
-                .GenerateLazy(amount).FirstOrDefault();
+                .GenerateLazy(1).FirstOrDefault();
         }
     }
 }

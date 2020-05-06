@@ -4,10 +4,12 @@ namespace GuestActionsProcessor.Models.Models
 {
     public class GuestActionInfo
     {
-        public string BuildingId { get; set; }
-        public string UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public BuildingInfo BuildingInfo { get; set; }
+        public UserInfo UserInfo { get; set; }
+        public CheckinInfo CheckinInfo { get; set; }
+        public CheckoutInfo CheckoutInfo { get; set; }
+
+        public Guid id { get; set; }
         public string AreaName { get; set; }
         public DateTime ActionDateTime { get; set; }
     }

@@ -66,5 +66,5 @@ resource "azurerm_cosmosdb_sql_container" "cosmos-db-container" {
   resource_group_name = "${azurerm_cosmosdb_account.cosmos-db-account.resource_group_name}"
   account_name = "${azurerm_cosmosdb_account.cosmos-db-account.name}"
   database_name = "${azurerm_cosmosdb_sql_database.cosmos-db.name}"
-  partition_key_path = "/ActionID"
+  partition_key_path = "/id"
 }

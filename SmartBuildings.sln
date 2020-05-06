@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestActionsProcessor", "GuestActionsProcessor\GuestActionsProcessor.csproj", "{D901A94A-F51E-4439-965D-2F918912DFF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestActionsProcessor", "GuestActionsProcessor\GuestActionsProcessor.csproj", "{D901A94A-F51E-4439-965D-2F918912DFF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestActionsProcessor.Test", "GuestActionsProcessor.Test\GuestActionsProcessor.Test.csproj", "{B8171EB7-EC1B-465A-A2C6-DEA3309F36F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestActionsProcessor.Test", "GuestActionsProcessor.Test\GuestActionsProcessor.Test.csproj", "{B8171EB7-EC1B-465A-A2C6-DEA3309F36F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestActionsProcessor.Models", "GuestActionsProcessor.Models\GuestActionsProcessor.Models.csproj", "{251E0164-9676-4710-8F23-52CA4C022D18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestActionsProcessor.Models", "GuestActionsProcessor.Models\GuestActionsProcessor.Models.csproj", "{251E0164-9676-4710-8F23-52CA4C022D18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
