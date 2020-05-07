@@ -17,8 +17,8 @@ namespace GuestActionsProcessor.Functions
         private readonly ILogger<EventProcessor> _logger;
 
         private readonly CosmosSettings _cosmosSettings;
-        private CosmosClient _cosmosClient;
-        private Container _cosmosContainer;
+        private readonly CosmosClient _cosmosClient;
+        private readonly Container _cosmosContainer;
 
         public EventProcessor(
             ILogger<EventProcessor> logger,
