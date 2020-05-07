@@ -90,6 +90,25 @@ This function is now exposing and endpoint which will trigger the function
 
 ## 3) Sending Events:
 
+Now you can use the test Azure function to generate ramdom events. You can perform this action sending a GET HTTP call to the exposed endpoint. It can be done through curl or Postman, like in this example:
+
+![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/postman.png "Diagram")
+
+The Function will be triggered, and will perform theese actions:
+- A Checkin Action
+- 10 random Room/Area Accesses
+- A Checkout Action
+
+The output from the function console whenever you call it is as follows:
+
+![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/SendingEvents.png "Diagram")
+
 ## 3) Receiving Events:
+
+The other function, the one suscribed to EventHub will be automatically triggered and will process every event.
+
+The output of the Function processing events is as follows:
+
+![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/ProcessingEvents.png "Diagram")
 
 ## 4) Destroying infrastructure:
