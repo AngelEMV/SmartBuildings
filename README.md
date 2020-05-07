@@ -103,7 +103,7 @@ The output from the function console whenever you call it is as follows:
 
 ![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/SendingEvents.png "Diagram")
 
-## 3) Receiving Events:
+## 4) Receiving Events:
 
 The other function, the one suscribed to EventHub will be automatically triggered and will process every event.
 
@@ -111,4 +111,10 @@ The output of the Function processing events is as follows:
 
 ![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/ProcessingEvents.png "Diagram")
 
-## 4) Destroying infrastructure:
+## 5) Storing Information:
+
+For further data mining every user action is stored in a CosmosDB. So the data stored in the previous example is as follows:
+
+![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/DataStored.png "Diagram")
+
+## 6) Destroying infrastructure:
