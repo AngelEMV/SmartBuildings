@@ -90,7 +90,7 @@ This function is now exposing and endpoint which will trigger the function
 
 ## 3) Sending Events:
 
-Now you can use the test Azure function to generate ramdom events. You can perform this action sending a GET HTTP call to the exposed endpoint. It can be done through curl or Postman, like in this example:
+Now you can use the test Azure function to generate random events. You can perform this action sending a GET HTTP call to the exposed endpoint. It can be done through curl or Postman, like in this example:
 
 ![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/postman.png "Diagram")
 
