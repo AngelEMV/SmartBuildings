@@ -26,13 +26,13 @@ Dependencies:
 
 As the infrastucture is created in Azure you have to be connected to an Azure subscription (It doesn't matter if is free or pay as you go). 
 
-Secondly infrastructure scripts are done using [Hashicorp](https://www.hashicorp.com/ "Hashicorp")'s tool called [Hashicorp](https://www.terraform.io/ "Hashicorp"), so you must have to have it installed before running the scripts.
+Secondly infrastructure scripts are done using [Hashicorp](https://www.hashicorp.com/ "Hashicorp")'s tool called [Terraform](https://www.terraform.io/ "Terraform"), so you must have to have it installed before running the scripts.
 
 Steps:
 
 Place yourself inside Infrastructure folder of GuestActionsProcessor and run ``` terraform apply ```
 
-Amessage like this will appear if everything goes well:
+A message like this will appear if everything goes well:
 
 ![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/Infra_TerraformApplyComplete.png "Diagram")
 
@@ -44,7 +44,49 @@ And inside of it an EventHub and a CosmosDB will appear:
 
 ![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/Infra_Content.png "Diagram")
 
+Once infrastructure is created you need to copy both connection strings, and place them in your ```local.settings.json``` file to run it locally. 
+
+```
+{
+  "IsEncrypted": false,
+
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+
+    "EventHubSettings:ConnectionString": "place here your connection string",
+    "EventHubSettings:HubName": "guestactions",
+
+    "CosmosSettings:ConnectionString": "place here your connection string",
+    "CosmosSettings:DatabaseName": "Smart-Buildings-DB",
+    "CosmosSettings:ContainerName": "GuestActions"
+  }
+}
+```
+
 ## 2) Starting Functions:
+
+In this solution functions are organized in two main projects.
+
+- GuestActionsProcessor: This project will be the one with the function in charge of processing events.
+
+- GuestActionsProcessor.Test: This project will be the one with the function in charge of generating dummy events to test the system.
+
+You can run them using Azure Functions CLI (```func start```) or your IDE. They are configured to run in defferent ports to avoid collisions.
+
+Once you run both functions console output will be as follows:
+
+GuestActionsProcessor: 
+
+![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/Running_GuestActionsProcessor.png "Diagram")
+
+This function now will be suscribed and linked hearing from EventHub events
+
+GuestActionsProcessor.Test: 
+
+![Diagram](https://github.com/AngelEMV/SmartBuildings/blob/master/Assets/Running_GuestActionsProcessorTest.png "Diagram")
+
+This function is now exposing and endpoint which will trigger the function
 
 ## 3) Sending Events:
 
