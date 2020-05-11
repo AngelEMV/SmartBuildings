@@ -1,5 +1,7 @@
 # SmartBuildings
 
+![.NET Core](https://github.com/AngelEMV/SmartBuildings/workflows/.NET%20Core/badge.svg?branch=master)
+
 ## Introduction:
 
 PoC of hypotethical smart building system.
