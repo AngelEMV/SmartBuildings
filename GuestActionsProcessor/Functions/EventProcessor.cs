@@ -1,5 +1,5 @@
-using GuestActionsProcessor.Models.Models;
-using GuestActionsProcessor.Models.SettingsModels;
+using GuestActionsProcessor.Domain.Models;
+using GuestActionsProcessor.Domain.Settings;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestActionsProcessor", "Gu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestActionsProcessor.Test", "GuestActionsProcessor.Test\GuestActionsProcessor.Test.csproj", "{B8171EB7-EC1B-465A-A2C6-DEA3309F36F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestActionsProcessor.Models", "GuestActionsProcessor.Models\GuestActionsProcessor.Models.csproj", "{251E0164-9676-4710-8F23-52CA4C022D18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestActionsProcessor.Domain", "GuestActionsProcessor.Models\GuestActionsProcessor.Domain.csproj", "{251E0164-9676-4710-8F23-52CA4C022D18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

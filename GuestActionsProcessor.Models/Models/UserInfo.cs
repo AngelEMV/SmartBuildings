@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GuestActionsProcessor.Models.Models
+namespace GuestActionsProcessor.Domain.Models
 {
     public class UserInfo
     {

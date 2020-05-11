@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GuestActionsProcessor.Models.Models
+namespace GuestActionsProcessor.Domain.Models
 {
     public class CheckoutInfo
     {

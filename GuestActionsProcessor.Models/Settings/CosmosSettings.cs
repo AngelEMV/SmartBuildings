@@ -1,4 +1,4 @@
-﻿namespace GuestActionsProcessor.Models.SettingsModels
+﻿namespace GuestActionsProcessor.Domain.Settings
 {
     public class CosmosSettings
     {

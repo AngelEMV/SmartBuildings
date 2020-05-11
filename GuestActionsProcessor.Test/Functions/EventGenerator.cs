@@ -1,7 +1,7 @@
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Producer;
-using GuestActionsProcessor.Models.Models;
-using GuestActionsProcessor.Models.SettingsModels;
+using GuestActionsProcessor.Domain.Models;
+using GuestActionsProcessor.Domain.Settings;
 using GuestActionsProcessor.Test.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

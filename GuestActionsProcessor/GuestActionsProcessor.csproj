@@ -23,6 +23,6 @@
     <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GuestActionsProcessor.Models\GuestActionsProcessor.Models.csproj" />
+    <ProjectReference Include="..\GuestActionsProcessor.Models\GuestActionsProcessor.Domain.csproj" />
   </ItemGroup>
 </Project>

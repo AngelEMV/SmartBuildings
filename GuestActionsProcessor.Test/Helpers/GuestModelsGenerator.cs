@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using GuestActionsProcessor.Models.Models;
+using GuestActionsProcessor.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

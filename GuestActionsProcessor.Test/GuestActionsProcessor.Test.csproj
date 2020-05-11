@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GuestActionsProcessor.Models\GuestActionsProcessor.Models.csproj" />
+    <ProjectReference Include="..\GuestActionsProcessor.Models\GuestActionsProcessor.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

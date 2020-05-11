@@ -1,4 +1,4 @@
-﻿using GuestActionsProcessor.Models.SettingsModels;
+﻿using GuestActionsProcessor.Domain.Settings;
 using GuestActionsProcessor.Test;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Azure.WebJobs;
