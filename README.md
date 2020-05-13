@@ -1,6 +1,6 @@
 # SmartBuildings
 
-![.NET Core](https://github.com/AngelEMV/SmartBuildings/workflows/.NET%20Core/badge.svg?branch=master)
+![.NET Core CI](https://github.com/AngelEMV/SmartBuildings/workflows/.NET%20Core%20CI/badge.svg?branch=master)
 
 ## Introduction:
 
