@@ -35,16 +35,18 @@ namespace GuestActionsProcessor.EventGenerator.Functions
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "EventGenerate")] HttpRequest req)
         {
-            IActionResult result = null;
+            IActionResult result;
 
             try
             {
+                int amountOfEventsToGenerate = int.TryParse(req.Query["amount"], out amountOfEventsToGenerate) ? amountOfEventsToGenerate : 10;
+
                 var buildingInfo = _guestModelsGenerator.GenerateBuildingInfo();
                 var userInfo = _guestModelsGenerator.GenerateUserInfo();
 
                 await SendCheckinInfo(buildingInfo, userInfo);
 
-                await SendRandomActions(buildingInfo, userInfo, 10);
+                await SendRandomActions(buildingInfo, userInfo, amountOfEventsToGenerate);
 
                 await SendCheckoutInfo(buildingInfo, userInfo);
 
