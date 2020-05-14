@@ -11,11 +11,19 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.3" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>appsettings.json</DependentUpon>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="local.settings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
   </ItemGroup>
@@ -23,6 +31,6 @@
     <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GuestActionsProcessor.Models\GuestActionsProcessor.Domain.csproj" />
+    <ProjectReference Include="..\GuestActionsProcessor.Domain\GuestActionsProcessor.Domain.csproj" />
   </ItemGroup>
 </Project>
