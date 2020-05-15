@@ -32,7 +32,7 @@ Secondly, infrastructure scripts are done using [Hashicorp](https://www.hashicor
 
 Steps:
 
-Place yourself inside Infrastructure folder of GuestActionsProcessor where Terraform scripts are located and run ``` terraform apply ```
+Place yourself inside Infrastructure folder where Terraform scripts are located and run ``` terraform apply ```
 
 A message like this will appear if everything goes well:
 
